@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import PianoRoll from './PianoRoll'
 import { generateNotes } from './NotesUtil';
+import { playNote } from './Synth';
 
 const numNotes = 12;
 const numSteps = 8;
@@ -11,6 +12,7 @@ class App extends Component {
     super(props);
 
     this.onCompChange = this.onCompChange.bind(this);
+    this.playKey = this.playKey.bind(this);
 
     this.notes = generateNotes(60, 60 + numNotes);
 
@@ -32,12 +34,18 @@ class App extends Component {
     });
   }
 
+  playKey(note) {
+    console.log(`playing note: ${note.name}`)
+    playNote(note.name);
+  }
+
   render() {
     return (
       <main className="app">
         <PianoRoll notes={this.notes}
           composition={this.state.composition}
-          onClickStep={this.onCompChange} />
+          onClickStep={this.onCompChange}
+          onClickKey={this.playKey} />
       </main>
     );
   }
