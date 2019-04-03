@@ -6,9 +6,6 @@ class KeyRow extends React.Component {
     const className = this.props.black ? "black" : "white";
     return (
       <section className={`key-row ${className}`}>
-        {/* <span className='piano-key'>
-          <p>{this.props.name}</p>
-        </span> */}
         <div className='steps-row'>
           {steps.map((step, col) => {
             return <Step isBlack={isBlack}

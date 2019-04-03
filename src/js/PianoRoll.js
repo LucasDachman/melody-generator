@@ -17,15 +17,11 @@ class PianoRoll extends React.Component {
   }
 
   onClickStep(row, col) {
-    console.log(row, col);
-
     this.setState((state) => {
       const newSteps = _.cloneDeep(state.steps);
-      console.log(newSteps);
       newSteps[row][col].isActive = !(newSteps[row][col].isActive);
       return { steps: newSteps };
-    }, () => {
-    })
+    });
   }
 
   render() {
@@ -35,15 +31,28 @@ class PianoRoll extends React.Component {
     const notes = generateNotes(60, 60 + numRows).reverse();
 
     return (
-      <section className="piano-roll">
-        {notes.map((n, row) => {
-          return <KeyRow name={n.name}
-            steps={steps[row]}
-            black={isBlack(n)}
-            onClick={(col) => this.onClickStep(row, col)}
-            key={row} />
-        })}
-      </section>
+      <div className='piano-roll'>
+        <section className='piano-roll-keys'>
+          {notes.map((n) => {
+            const className = ['piano-key', isBlack(n) ? 'black' : 'white'].join(' ');
+            return (
+              <div className={className}
+                key={n.name}>
+                <p>{n.name}</p>
+              </div>
+            );
+          })}
+        </section>
+        <section className="piano-roll-editor">
+          {notes.map((n, row) => {
+            return <KeyRow name={n.name}
+              steps={steps[row]}
+              black={isBlack(n)}
+              onClick={(col) => this.onClickStep(row, col)}
+              key={row} />
+          })}
+        </section>
+      </div>
     );
   }
 }
