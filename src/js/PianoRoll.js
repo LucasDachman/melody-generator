@@ -1,34 +1,17 @@
 import React from 'react';
-import _ from 'lodash';
 import KeyRow from './KeyRow';
 import { generateNotes, isBlack } from './NotesUtil';
 
 class PianoRoll extends React.Component {
-  constructor(props) {
-    super(props);
-    let steps = new Array(props.numRows)
-      .fill(null)
-      .map(() => new Array(props.numCols).fill(null)
-        .map(() => ({ isActive: false }))
-      );
-    this.state = {
-      steps: steps
-    }
-  }
 
   onClickStep(row, col) {
-    this.setState((state) => {
-      const newSteps = _.cloneDeep(state.steps);
-      newSteps[row][col].isActive = !(newSteps[row][col].isActive);
-      return { steps: newSteps };
-    });
+
   }
 
   render() {
-    const { steps } = this.state;
-    const { numRows } = this.props;
+    const steps = this.props.composition;
     // C4 to A5
-    const notes = generateNotes(60, 60 + numRows);
+    const notes = generateNotes(60, 60 + steps.length);
 
     return (
       <div className='piano-roll'>
@@ -48,7 +31,7 @@ class PianoRoll extends React.Component {
             return <KeyRow name={n.name}
               steps={steps[row]}
               black={isBlack(n)}
-              onClick={(col) => this.onClickStep(row, col)}
+              onClick={(col) => this.props.onClickStep(row, col)}
               key={row} />
           })}
         </section>
