@@ -31,6 +31,9 @@ body {
 .piano-roll-editor {
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-flow: column-reverse nowrap;
+  justify-content: flex-end;
 }
 
 .key-row {
@@ -71,6 +74,12 @@ body {
   background-color: var(--light-blue);
   border-radius: 5px;
   border-color: var(--light-blue);
+}
+
+.piano-roll-keys {
+  display: flex;
+  flex-flow: column-reverse nowrap;
+  justify-content: flex-end;
 }
 
 .piano-key {

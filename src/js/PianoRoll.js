@@ -28,7 +28,7 @@ class PianoRoll extends React.Component {
     const { steps } = this.state;
     const { numRows } = this.props;
     // C4 to A5
-    const notes = generateNotes(60, 60 + numRows).reverse();
+    const notes = generateNotes(60, 60 + numRows);
 
     return (
       <div className='piano-roll'>
