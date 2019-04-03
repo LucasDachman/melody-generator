@@ -18,12 +18,22 @@ class App extends Component {
 
     let composition = new Array(numNotes)
       .fill(null)
-      .map(() => new Array(numSteps).fill(null)
-        .map(() => ({ isActive: false }))
+      .map((_, i) => new Array(numSteps).fill(null)
+        .map(() => ({ isActive: false, note: this.notes[i] }))
       );
     this.state = {
       composition: composition
-    }
+    };
+  }
+
+  createSequence() {
+    const chords = _.zip(...this.state.composition)
+      .map((noteRow) => {
+        return noteRow.reduce((acc, curr) => {
+          return curr.isActive ? [...acc, curr.note.name] : acc;
+        }, []);
+      });
+    setNotes(chords);
   }
 
   onCompChange(row, col) {
@@ -31,8 +41,9 @@ class App extends Component {
       const newComp = _.cloneDeep(state.composition);
       newComp[row][col].isActive = !(newComp[row][col].isActive);
       return { composition: newComp };
+    }, () => {
+      this.createSequence();
     });
-    
   }
 
   playKey(note) {
