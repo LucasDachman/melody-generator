@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import PianoRoll from './PianoRoll'
 import { generateNotes } from './NotesUtil';
-import { playNote } from './Synth';
+import { playNote, start, stop, setNotes } from './Synth';
 
 const numNotes = 12;
 const numSteps = 8;
@@ -32,6 +32,7 @@ class App extends Component {
       newComp[row][col].isActive = !(newComp[row][col].isActive);
       return { composition: newComp };
     });
+    
   }
 
   playKey(note) {
@@ -46,6 +47,8 @@ class App extends Component {
           composition={this.state.composition}
           onClickStep={this.onCompChange}
           onClickKey={this.playKey} />
+        <button onClick={start}>Play</button>
+        <button onClick={stop}>Stop</button>
       </main>
     );
   }
