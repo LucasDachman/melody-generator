@@ -1,6 +1,6 @@
 import React from 'react';
 import KeyRow from './KeyRow';
-import { generateNotes, isBlack } from './NotesUtil';
+import { isBlack } from './NotesUtil';
 
 class PianoRoll extends React.Component {
 
@@ -10,8 +10,8 @@ class PianoRoll extends React.Component {
 
   render() {
     const steps = this.props.composition;
+    const { notes } = this.props;
     // C4 to A5
-    const notes = generateNotes(60, 60 + steps.length);
 
     return (
       <div className='piano-roll'>

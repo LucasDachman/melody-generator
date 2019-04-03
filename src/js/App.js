@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import PianoRoll from './PianoRoll'
+import { generateNotes } from './NotesUtil';
 
-const numRows = 12;
-const numCols = 8;
+const numNotes = 12;
+const numSteps = 8;
 
 class App extends Component {
   constructor(props) {
@@ -11,9 +12,11 @@ class App extends Component {
 
     this.onCompChange = this.onCompChange.bind(this);
 
-    let composition = new Array(numRows)
+    this.notes = generateNotes(60, 60 + numNotes);
+
+    let composition = new Array(numNotes)
       .fill(null)
-      .map(() => new Array(numCols).fill(null)
+      .map(() => new Array(numSteps).fill(null)
         .map(() => ({ isActive: false }))
       );
     this.state = {
@@ -32,7 +35,8 @@ class App extends Component {
   render() {
     return (
       <main className="app">
-        <PianoRoll composition={this.state.composition}
+        <PianoRoll notes={this.notes}
+          composition={this.state.composition}
           onClickStep={this.onCompChange} />
       </main>
     );
