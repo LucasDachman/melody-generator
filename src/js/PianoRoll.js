@@ -10,7 +10,7 @@ class PianoRoll extends React.Component {
 
   render() {
     const steps = this.props.composition;
-    const { notes, onClickStep, onClickKey } = this.props;
+    const { notes, onClickStep, onClickKey, updateProbability } = this.props;
     // C4 to A5
 
     return (
@@ -33,6 +33,7 @@ class PianoRoll extends React.Component {
               steps={steps[row]}
               black={isBlack(n)}
               onClick={(col) => onClickStep(row, col)}
+              updateProbability={(col, value) => updateProbability(row, col, value)}
               key={row} />
           })}
         </section>

@@ -16,7 +16,11 @@ class App extends Component {
     let composition = new Array(numNotes)
       .fill(null)
       .map((_, i) => new Array(numSteps).fill(null)
-        .map(() => ({ isActive: false, note: this.notes[i] }))
+        .map(() => ({ 
+          isActive: false, 
+          note: this.notes[i],
+          probability: 100
+        }))
       );
     this.state = {
       composition: composition
@@ -33,7 +37,7 @@ class App extends Component {
     this.synth.setNotes(chords);
   }
 
-  onCompChange = (row, col) => {
+  toggleCell = (row, col) => {
     this.setState((state) => {
       const newComp = _.cloneDeep(state.composition);
       newComp[row][col].isActive = !(newComp[row][col].isActive);
@@ -43,8 +47,17 @@ class App extends Component {
     });
   }
 
+  updateProbability = (row, col, value) => {
+    this.setState((state) => {
+      const newComp = _.cloneDeep(state.composition);
+      newComp[row][col].probability = value;
+      return { composition: newComp };
+    }, () => {
+      this.createSequence();
+    })
+  }
+
   playKey = (note) => {
-    console.log(`playing note: ${note.name}`)
     this.synth.playNote(note.name);
   }
 
@@ -53,7 +66,8 @@ class App extends Component {
       <main className="app">
         <PianoRoll notes={this.notes}
           composition={this.state.composition}
-          onClickStep={this.onCompChange}
+          onClickStep={this.toggleCell}
+          updateProbability={this.updateProbability}
           onClickKey={this.playKey} />
         <button onClick={this.synth.start}>Play</button>
         <button onClick={this.synth.stop}>Stop</button>
