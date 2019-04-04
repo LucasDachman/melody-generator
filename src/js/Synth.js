@@ -6,13 +6,20 @@ export default class Synth {
   step = 0;
 
   loop = new Tone.Loop((time) => {
-    this.synth.triggerAttackRelease(this.chords[this.step], '8n', time);
+    let currentChord = this.chords[this.step];
+    const chanceChord = currentChord.reduce((acc, curr) => {
+      const chance = Math.floor(Math.random() * 101);
+      return chance <= curr.probability ? [...acc, curr.note.name] : acc;
+    }, []);
+    
+    this.synth.triggerAttackRelease(chanceChord, '16n', time);
     this.step++;
     if (this.step >= this.chords.length) this.step = 0;
-  }, '8n').start(0);
+  }, '16n').start(0);
 
   constructor() {
     this.loop.humanize = true;
+    Tone.Transport.bpm.value = 90;
   }
 
   playNote(note) {

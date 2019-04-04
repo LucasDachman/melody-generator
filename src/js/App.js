@@ -16,8 +16,8 @@ class App extends Component {
     let composition = new Array(numNotes)
       .fill(null)
       .map((_, i) => new Array(numSteps).fill(null)
-        .map(() => ({ 
-          isActive: false, 
+        .map(() => ({
+          isActive: false,
           note: this.notes[i],
           probability: 100
         }))
@@ -31,9 +31,10 @@ class App extends Component {
     const chords = _.zip(...this.state.composition)
       .map((noteRow) => {
         return noteRow.reduce((acc, curr) => {
-          return curr.isActive ? [...acc, curr.note.name] : acc;
+          return curr.isActive ? [...acc, _.pick(curr, ['note.name', 'probability'])] : acc;
         }, []);
       });
+
     this.synth.setNotes(chords);
   }
 
@@ -61,6 +62,21 @@ class App extends Component {
     this.synth.playNote(note.name);
   }
 
+  clear = () => {
+    this.setState((state) => {
+      const newComp = _.cloneDeep(state.composition);
+      newComp.forEach(row => {
+        row.forEach(el => {
+          el.isActive = false;
+          el.probability = 100;
+        });
+      });
+      return { composition: newComp };
+    }, () => {
+      this.createSequence();
+    });
+  }
+
   render() {
     return (
       <main className="app">
@@ -71,6 +87,7 @@ class App extends Component {
           onClickKey={this.playKey} />
         <button onClick={this.synth.start}>Play</button>
         <button onClick={this.synth.stop}>Stop</button>
+        <button onClick={this.clear}>Clear</button>
       </main>
     );
   }
