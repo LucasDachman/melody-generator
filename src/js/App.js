@@ -42,7 +42,9 @@ class App extends Component {
   toggleCell = (row, col) => {
     this.setState((state) => {
       const newComp = _.cloneDeep(state.composition);
-      newComp[row][col].isActive = !(newComp[row][col].isActive);
+      const cell = newComp[row][col];
+      cell.isActive = !(cell.isActive);
+      if (!cell.isActive) cell.probability = 100;
       return { composition: newComp };
     }, () => {
       this.createSequence();
