@@ -4,11 +4,12 @@ import PianoRoll from './PianoRoll'
 import { generateNotes } from './NotesUtil';
 import Synth from './Synth';
 
-const numNotes = 12;
+const numNotes = 24;
 const numSteps = 8;
+const startNote = 36;
 
 class App extends Component {
-  notes = generateNotes(60, 60 + numNotes);
+  notes = generateNotes(startNote, startNote + numNotes);
   synth = new Synth();
 
   constructor(props) {
