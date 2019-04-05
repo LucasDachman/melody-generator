@@ -10,12 +10,14 @@ export default class Synth {
     const nextChord = this.chanceNote();
     console.log('next chord:', nextChord)
     Tone.context.resume();
-    this.synth.triggerAttackRelease(nextChord, '16n', time);
-  }, '16n').start(0);
+    nextChord &&
+      this.synth.triggerAttackRelease(nextChord, '32n', time);
+  }, '16n').start('+0.1');
 
   constructor() {
     // this.loop.humanize = true;
     Tone.Transport.bpm.value = 90;
+    Tone.context.latencyHint = 'playback'
   }
 
   chanceChord() {
@@ -39,7 +41,7 @@ export default class Synth {
       return new Array(note.probability).fill(note.note.name);
     });
     console.log(arr);
-    
+
     const index = Math.floor(Math.random() * arr.length);
     return arr[index];
   }
