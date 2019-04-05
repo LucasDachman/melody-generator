@@ -83,14 +83,14 @@ class App extends Component {
   render() {
     return (
       <main className="app">
+        <button onClick={this.synth.start}>Play</button>
+        <button onClick={this.synth.stop}>Stop</button>
+        <button onClick={this.clear}>Clear</button>
         <PianoRoll notes={this.notes}
           composition={this.state.composition}
           onClickStep={this.toggleCell}
           updateProbability={this.updateProbability}
           onClickKey={this.playKey} />
-        <button onClick={this.synth.start}>Play</button>
-        <button onClick={this.synth.stop}>Stop</button>
-        <button onClick={this.clear}>Clear</button>
       </main>
     );
   }
