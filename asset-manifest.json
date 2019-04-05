@@ -1,15 +1,15 @@
 {
-  "main.css": "/static/css/main.5bea0a62.chunk.css",
-  "main.js": "/static/js/main.fc120e01.chunk.js",
-  "main.js.map": "/static/js/main.fc120e01.chunk.js.map",
-  "runtime~main.js": "/static/js/runtime~main.c5541365.js",
-  "runtime~main.js.map": "/static/js/runtime~main.c5541365.js.map",
-  "static/css/2.446d365f.chunk.css": "/static/css/2.446d365f.chunk.css",
-  "static/js/2.a3084282.chunk.js": "/static/js/2.a3084282.chunk.js",
-  "static/js/2.a3084282.chunk.js.map": "/static/js/2.a3084282.chunk.js.map",
-  "index.html": "/index.html",
-  "precache-manifest.98fc6ae07a2a2dd72667382b33db9d97.js": "/precache-manifest.98fc6ae07a2a2dd72667382b33db9d97.js",
-  "service-worker.js": "/service-worker.js",
-  "static/css/2.446d365f.chunk.css.map": "/static/css/2.446d365f.chunk.css.map",
-  "static/css/main.5bea0a62.chunk.css.map": "/static/css/main.5bea0a62.chunk.css.map"
+  "main.css": "/melody-generator/static/css/main.5bea0a62.chunk.css",
+  "main.js": "/melody-generator/static/js/main.9cee3751.chunk.js",
+  "main.js.map": "/melody-generator/static/js/main.9cee3751.chunk.js.map",
+  "runtime~main.js": "/melody-generator/static/js/runtime~main.82a8b910.js",
+  "runtime~main.js.map": "/melody-generator/static/js/runtime~main.82a8b910.js.map",
+  "static/css/2.446d365f.chunk.css": "/melody-generator/static/css/2.446d365f.chunk.css",
+  "static/js/2.a3084282.chunk.js": "/melody-generator/static/js/2.a3084282.chunk.js",
+  "static/js/2.a3084282.chunk.js.map": "/melody-generator/static/js/2.a3084282.chunk.js.map",
+  "index.html": "/melody-generator/index.html",
+  "precache-manifest.f2afb4336f5320c06804640ebb28a088.js": "/melody-generator/precache-manifest.f2afb4336f5320c06804640ebb28a088.js",
+  "service-worker.js": "/melody-generator/service-worker.js",
+  "static/css/2.446d365f.chunk.css.map": "/melody-generator/static/css/2.446d365f.chunk.css.map",
+  "static/css/main.5bea0a62.chunk.css.map": "/melody-generator/static/css/main.5bea0a62.chunk.css.map"
 }
